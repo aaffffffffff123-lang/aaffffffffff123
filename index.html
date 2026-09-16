@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>혐규</title>
+<meta name="description" content="4컷 만화를 그리고 웹게임을 만듭니다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css">
+<style>
+:root{
+  --ink:#14100F;
+  --page:#FFFFFF;
+  --gut:#FFFFFF;
+  --mute:#6E6A66;
+  --tag:#D8352A;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  min-height:100dvh;
+  align-items:flex-start;
+  background:var(--page);
+  color:var(--ink);
+  font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  display:flex;
+  justify-content:center;
+  padding:18px 14px calc(34px + env(safe-area-inset-bottom));
+}
+.page{width:100%;max-width:620px;display:grid;gap:10px;align-content:start;}
+
+/* 첫 칸 — 유일하게 검은 칸 */
+.head{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:22px 20px;
+  background:var(--ink);
+  color:#FFFFFF;
+  border:3px solid var(--ink);
+}
+.head{padding:26px 22px;}
+.head svg{flex:none;width:88px;height:88px;display:block;}
+.head h1{
+  margin:0;
+  font-size:54px;
+  font-weight:800;
+  letter-spacing:-0.07em;
+  line-height:0.9;
+}
+@media (max-width:380px){
+  .head{gap:13px;padding:20px 17px;}
+  .head svg{width:70px;height:70px;}
+  .head h1{font-size:43px;}
+}
+
+/* 칸 */
+.cell{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:17px 16px;
+  border:3px solid var(--ink);
+  background:var(--page);
+  color:var(--ink);
+  text-decoration:none;
+  transition:background .09s linear, color .09s linear;
+}
+.cell svg{flex:none;width:30px;height:30px;display:block;color:inherit;}
+.cell b{
+  display:block;
+  font-size:18.5px;
+  font-weight:800;
+  letter-spacing:-0.045em;
+  line-height:1.2;
+}
+.cell span{
+  display:block;
+  margin-top:3px;
+  font-size:12.5px;
+  font-weight:600;
+  letter-spacing:-0.02em;
+  color:var(--mute);
+  transition:color .09s linear;
+}
+.cell:hover,.cell:active,.cell:focus-visible{background:var(--ink);color:#FFFFFF;outline:none;}
+.cell:hover span,.cell:active span,.cell:focus-visible span{color:#B9B5B0;}
+.cell:focus-visible{box-shadow:0 0 0 3px #FFFFFF inset;}
+
+.wide{grid-column:1 / -1;}
+.wide b{font-size:22px;}
+.wide svg{width:38px;height:38px;}
+
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.mini .cell{
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:15px 8px;
+}
+.mini .cell b{font-size:14.5px;letter-spacing:-0.05em;}
+.mini .cell svg{width:26px;height:26px;}
+@media (max-width:340px){ .mini .cell b{font-size:13px;} }
+.row .cell{
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  min-height:118px;
+  padding:16px 15px 15px;
+}
+.row .cell > div{min-height:42px;}
+.row .cell b{font-size:17.5px;}
+@media (max-width:344px){ .row .cell b{font-size:16px;} }
+
+.cell .tag{
+  position:absolute;
+  margin:0;
+  top:-3px;
+  right:-3px;
+  padding:4px 7px;
+  background:var(--tag);
+  color:#FFFFFF;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  line-height:1;
+  transition:none;
+}
+
+.foot{
+  margin-top:4px;
+  font-size:12px;
+  font-weight:500;
+  color:var(--mute);
+  letter-spacing:-0.02em;
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="head">
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M24.00 2.84 C27.19 2.93 30.48 3.49 33.44 4.70 C36.39 5.91 39.79 7.65 41.72 10.08 C43.64 12.51 44.41 16.18 44.97 19.28 C45.53 22.39 45.73 25.72 45.08 28.74 C44.42 31.76 43.07 35.11 41.06 37.40 C39.05 39.69 35.87 41.15 33.03 42.47 C30.19 43.79 27.09 45.14 24.00 45.31 C20.91 45.47 17.40 44.72 14.49 43.46 C11.58 42.19 8.30 40.21 6.54 37.72 C4.78 35.22 4.45 31.57 3.93 28.51 C3.41 25.45 2.76 22.23 3.42 19.37 C4.08 16.52 6.10 13.90 7.91 11.36 C9.72 8.82 11.61 5.56 14.29 4.14 C16.97 2.72 20.81 2.75 24.00 2.84 Z" fill="none" stroke="#FFFFFF" stroke-width="2.1"/>
+      <g stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" fill="none">
+        <path d="M13.2 9.6V18.6"/><path d="M20.4 7.4V17.4"/>
+        <path d="M27.6 7.4V17.4"/><path d="M34.6 10.0V19.0"/>
+      </g>
+      <g fill="#FFFFFF">
+        <ellipse cx="18.1" cy="25.2" rx="1.85" ry="2.15"/>
+        <ellipse cx="29.9" cy="25.2" rx="1.85" ry="2.15"/>
+      </g>
+      <path d="M19.9 32.3a4.6 4.6 0 0 0 8.2 0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <h1>혐규</h1>
+  </header>
+
+  <div class="mini">
+    <a class="cell" href="https://www.instagram.com/gyuhyeom/">
+      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true">
+        <rect x="4.2" y="4.2" width="25.6" height="25.6" rx="7.4"/>
+        <circle cx="17" cy="17" r="6.2"/>
+        <circle cx="24.6" cy="9.6" r="1.7" fill="currentColor" stroke="none"/>
+      </svg>
+      <b>인스타그램</b>
+    </a>
+
+    <a class="cell" href="https://twitter.com/aaffffffffff123">
+      <svg viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M25.8 3.6h4.7l-10.2 11.7 12 15.1h-9.4l-7.4-9.7-8.5 9.7H2.3l11-12.5L1.9 3.6h9.7l6.7 8.8 7.5-8.8zm-1.7 25h2.6L11.1 6.2H8.3z" fill="currentColor"/>
+      </svg>
+      <b>트위터</b>
+    </a>
+
+    <a class="cell" href="https://www.youtube.com/user/aaffffffffff123">
+      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2.4" y="7.4" width="29.2" height="19.2" rx="5.4"/>
+        <path d="M14.4 12.4 22.6 17l-8.2 4.6z" fill="currentColor" stroke="none"/>
+      </svg>
+      <b>유튜브</b>
+    </a>
+  </div>
+
+  <div class="row">
+    <a class="cell" href="https://aaffffffffff123.tistory.com/">
+      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5.6 24.2 4.2 30l5.8-1.4L28 10.6a3.4 3.4 0 0 0-4.8-4.8z"/>
+        <path d="M21.4 8.2l4.8 4.8"/>
+      </svg>
+      <div>
+        <b>블로그</b>
+        <span>티스토리</span>
+      </div>
+    </a>
+
+    <a class="cell" href="https://www.postype.com/@aaffffffffff123">
+      <span class="tag">유료</span>
+      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17 8.6C14.2 6.4 10.8 5.6 6.2 5.8v20.4c4.6-.2 8 .6 10.8 2.8 2.8-2.2 6.2-3 10.8-2.8V5.8c-4.6-.2-8 .6-10.8 2.8z"/>
+        <path d="M17 8.6v20.4"/>
+      </svg>
+      <div>
+        <b>긴 만화</b>
+        <span>포스타입</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a class="cell" href="mailto:aaffffffffff123@gmail.com">
+      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2.6" y="6.6" width="28.8" height="20.8" rx="2.4"/>
+        <path d="M4.4 9 17 18.6 29.6 9"/>
+      </svg>
+      <div>
+        <b>문의</b>
+      </div>
+    </a>
+
+    <a class="cell" href="https://open.kakao.com/o/smWvLXNi">
+      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17 4.4c7.6 0 13.8 4.8 13.8 10.8S24.6 26 17 26c-1.2 0-2.4-.1-3.5-.4l-6.6 3.6 1.7-5.6C5.5 21.6 3.2 18.4 3.2 15.2 3.2 9.2 9.4 4.4 17 4.4z"/>
+        <path d="M13.9 12.6a3.2 3.2 0 0 1 6.2 1.1c0 2.1-3.1 2.6-3.1 4.6"/>
+        <path d="M17 21.1v.1" stroke-width="2.9"/>
+      </svg>
+      <div>
+        <b>익명질문</b>
+        <span>오픈채팅</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a class="cell" href="https://marpple.shop/kr/gyuhyeom/">
+      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3.4" y="7.6" width="27.2" height="19.4" rx="2.6"/>
+        <circle cx="11.8" cy="15.4" r="3.1"/>
+        <path d="M6.6 22.8c1-2.2 3-3.3 5.2-3.3s4.2 1.1 5.2 3.3"/>
+        <path d="M21.6 13.8h6.2M21.6 18.2h6.2"/>
+      </svg>
+      <div>
+        <b>예술 인패스</b>
+        <span>마플샵</span>
+      </div>
+    </a>
+
+    <a class="cell" href="https://aaffffffffff123-lang.github.io/arcade/">
+      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2.6" y="9.4" width="28.8" height="18.6"/>
+        <path d="M8 14.6v6.2M4.9 17.7h6.2"/>
+        <circle cx="23.4" cy="16.6" r="1.7" fill="currentColor" stroke="none"/>
+        <circle cx="27" cy="20.4" r="1.7" fill="currentColor" stroke="none"/>
+        <path d="M12.4 9.4V5.2h9.2v4.2"/>
+      </svg>
+      <div>
+        <b>오락실</b>
+      </div>
+    </a>
+  </div>
+
+  <p class="foot">aaffffffffff123@gmail.com</p>
+
+</main>
+</body>
+</html>
