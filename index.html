@@ -4,7 +4,68 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>혐규</title>
-<meta name="description" content="4컷 만화를 그리고 웹게임을 만듭니다.">
+
+<link id="favicon" rel="icon" type="image/svg+xml">
+
+<script>
+(() => {
+  const faviconSvg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+      <rect width="48" height="48" rx="8" fill="#14100F"/>
+
+      <path
+        d="M24.00 2.84
+        C27.19 2.93 30.48 3.49 33.44 4.70
+        C36.39 5.91 39.79 7.65 41.72 10.08
+        C43.64 12.51 44.41 16.18 44.97 19.28
+        C45.53 22.39 45.73 25.72 45.08 28.74
+        C44.42 31.76 43.07 35.11 41.06 37.40
+        C39.05 39.69 35.87 41.15 33.03 42.47
+        C30.19 43.79 27.09 45.14 24.00 45.31
+        C20.91 45.47 17.40 44.72 14.49 43.46
+        C11.58 42.19 8.30 40.21 6.54 37.72
+        C4.78 35.22 4.45 31.57 3.93 28.51
+        C3.41 25.45 2.76 22.23 3.42 19.37
+        C4.08 16.52 6.10 13.90 7.91 11.36
+        C9.72 8.82 11.61 5.56 14.29 4.14
+        C16.97 2.72 20.81 2.75 24.00 2.84 Z"
+        fill="none"
+        stroke="#FFFFFF"
+        stroke-width="2.1"
+      />
+
+      <g
+        stroke="#FFFFFF"
+        stroke-width="2.1"
+        stroke-linecap="round"
+        fill="none"
+      >
+        <path d="M13.2 9.6V18.6"/>
+        <path d="M20.4 7.4V17.4"/>
+        <path d="M27.6 7.4V17.4"/>
+        <path d="M34.6 10V19"/>
+      </g>
+
+      <g fill="#FFFFFF">
+        <ellipse cx="18.1" cy="25.2" rx="1.85" ry="2.15"/>
+        <ellipse cx="29.9" cy="25.2" rx="1.85" ry="2.15"/>
+      </g>
+
+      <path
+        d="M19.9 32.3a4.6 4.6 0 0 0 8.2 0"
+        fill="none"
+        stroke="#FFFFFF"
+        stroke-width="2.2"
+        stroke-linecap="round"
+      />
+    </svg>
+  `;
+
+  document.getElementById('favicon').href =
+    'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(faviconSvg);
+})();
+</script>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css">
 <style>
 :root{
