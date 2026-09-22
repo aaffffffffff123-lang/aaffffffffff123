@@ -69,299 +69,309 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css">
 <style>
 :root{
-  --ink:#14100F;
-  --page:#FFFFFF;
-  --gut:#FFFFFF;
-  --mute:#6E6A66;
-  --tag:#D8352A;
+  --ink:#191715;
+  --paper:#f5f1e8;
+  --white:#fffdf8;
+  --red:#df4436;
+  --yellow:#f4dc8b;
+  --blue:#c7dee4;
+  --muted:#635d56;
+  --hand-border:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M4 4 L18 1.6 L40 6.1 L63 2.2 L84 5.5 L96 4 L98.5 26 L93.5 51 L98 75 L96 96 L78 93.8 L54 98.2 L30 93.9 L4 96 L6.2 72 L1.9 48 L5.7 24 Z' fill='none' stroke='%23191715' stroke-width='8' stroke-linejoin='miter'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{margin:0;padding:0;}
 body{
   min-height:100dvh;
-  align-items:flex-start;
-  background:var(--page);
+  background:var(--paper);
   color:var(--ink);
   font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-  display:flex;
-  justify-content:center;
-  padding:18px 14px calc(34px + env(safe-area-inset-bottom));
+  padding:clamp(16px,4vw,42px) 16px calc(48px + env(safe-area-inset-bottom));
 }
-.page{width:100%;max-width:620px;display:grid;gap:10px;align-content:start;}
-
-/* 첫 칸 — 유일하게 검은 칸 */
-.head{
+a{color:inherit;}
+.page{width:min(100%,760px);margin:0 auto;}
+.hero{
+  position:relative;
+  min-height:190px;
+  display:flex;
+  align-items:center;
+  gap:22px;
+  padding:28px 32px;
+  background:var(--ink);
+  color:var(--white);
+  clip-path:polygon(.14% .8%,27% 0,63% .55%,99.7% .25%,100% 36%,99.8% 72%,100% 100%,70% 99.4%,34% 100%,0 99.5%,.22% 61%,0 33%);
+}
+.identity{display:flex;align-items:center;gap:22px;min-width:0;}
+.face{width:112px;height:112px;display:block;flex:none;transition:transform .2s ease;}
+.hero:hover .face{transform:rotate(-6deg);}
+.face .eyes{transform-box:fill-box;transform-origin:center;animation:blink 6.4s infinite;}
+@keyframes blink{0%,91%,94%,100%{transform:scaleY(1)}92.5%{transform:scaleY(.12)}}
+.hero h1{margin:0;font-size:clamp(58px,10vw,91px);font-weight:800;letter-spacing:-.09em;line-height:.95;white-space:nowrap;}
+.hero p{margin:15px 0 0;font-size:13px;letter-spacing:.03em;color:#c9c2b7;}
+.comic-link{
+  position:relative;
+  flex:none;
+  margin-left:auto;
+  width:151px;
+  min-height:116px;
+  padding:12px 13px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-decoration:none;
+  background:var(--white);
+  color:var(--ink);
+  border:3px solid var(--ink);
+  outline:2px solid var(--white);
+  transform:rotate(2deg);
+  transition:transform .16s ease,background .16s ease;
+}
+.comic-link:hover{transform:rotate(-1deg) translateY(-4px);background:var(--yellow);}
+.comic-link:active{transform:rotate(0) translateY(0);}
+.comic-link svg{width:34px;height:34px;display:block;}
+.comic-link strong{display:block;font-size:22px;line-height:1;letter-spacing:-.06em;}
+.comic-link small{font-size:11px;font-weight:700;letter-spacing:-.03em;}
+.comic-link .arrow{position:absolute;right:12px;top:10px;font-size:17px;font-weight:700;}
+.section-label{display:flex;align-items:center;gap:10px;margin:28px 0 14px;font-size:15px;font-weight:800;letter-spacing:-.04em;}
+.section-label::before{content:'✳';color:var(--red);font-size:24px;line-height:0;}
+.section-label span{font-weight:600;font-size:12px;color:var(--muted);letter-spacing:0;}
+.showcase{display:grid;grid-template-columns:1.12fr .88fr;gap:15px;align-items:stretch;}
+.hand-border{border:3px solid var(--ink);border-image-source:var(--hand-border);border-image-slice:8;}
+.feature{
+  position:relative;
+  min-height:242px;
+  padding:21px 22px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  text-decoration:none;
+  background:var(--white);
+  transition:transform .17s ease,filter .17s ease;
+}
+.feature:hover{filter:brightness(.98);}
+.feature:focus-visible,.note:focus-visible,.social-link:focus-visible,.contact-link:focus-visible{outline:3px solid var(--red);outline-offset:5px;}
+.feature .serial{font-size:11px;font-weight:800;letter-spacing:.07em;}
+.feature h2{position:relative;z-index:1;margin:auto 0 3px;font-size:clamp(36px,6vw,54px);font-weight:800;letter-spacing:-.075em;line-height:1;}
+.feature .desc{position:relative;z-index:1;font-size:13px;font-weight:650;}
+.feature .go{position:absolute;right:22px;bottom:18px;font-size:26px;font-weight:700;transition:transform .17s ease;}
+.feature:hover .go{transform:translate(4px,-4px);}
+.feature .drawing{position:absolute;right:15px;top:31px;width:47%;height:60%;pointer-events:none;}
+.arcade{background:var(--yellow);transform:rotate(-.45deg);}
+.arcade:hover{transform:rotate(0) translateY(-4px);}
+.long-comic{background:var(--blue);transform:rotate(.48deg);}
+.long-comic:hover{transform:rotate(0) translateY(-4px);}
+.long-comic .drawing{width:45%;right:14px;top:40px;}
+.paid{position:absolute;top:17px;right:17px;padding:4px 7px;background:var(--red);color:white;font-size:11px;font-weight:800;transform:rotate(5deg);}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:15px;}
+.note{
+  min-height:113px;
   display:flex;
   align-items:center;
   gap:16px;
-  padding:26px 22px;
-  background:var(--ink);
-  color:#FFFFFF;
-  border:3px solid var(--ink);
-  clip-path:polygon(.15% .65%,27% 0,62% .5%,100% .3%,99.8% 32%,100% 69%,99.8% 100%,73% 99.5%,33% 100%,0 99.6%,.2% 65%,0 34%);
+  padding:16px 20px;
+  text-decoration:none;
+  background:var(--white);
+  transition:transform .17s ease,background .17s ease;
 }
-.head > svg{flex:none;width:88px;height:88px;display:block;}
-.head h1{
-  margin:0;
-  font-size:54px;
-  font-weight:800;
-  letter-spacing:-0.07em;
-  line-height:0.9;
-}
-.comic-link{
-  margin-left:auto;
-  flex:none;
-  width:82px;
-  min-height:82px;
-  display:flex;
-  flex-direction:column;
+.note:first-child{transform:rotate(.4deg);}
+.note:last-child{transform:rotate(-.55deg);}
+.note:hover{transform:rotate(0) translateY(-3px);background:#fff7e3;}
+.note svg{width:40px;height:40px;flex:none;}
+.note strong{display:block;font-size:23px;font-weight:800;letter-spacing:-.055em;}
+.note small{display:block;margin-top:3px;font-size:12px;color:var(--muted);font-weight:600;}
+.note .go{margin-left:auto;align-self:flex-start;font-size:21px;}
+.social{margin-top:28px;}
+.social .section-label{margin-bottom:14px;}
+.social-list{display:flex;flex-wrap:wrap;gap:11px;}
+.social-link{
+  min-height:47px;
+  display:inline-flex;
   align-items:center;
-  justify-content:center;
-  gap:5px;
-  border:2px solid #FFFFFF;
-  color:#FFFFFF;
+  gap:9px;
+  padding:9px 16px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:var(--white);
   text-decoration:none;
   font-size:14px;
   font-weight:800;
-  line-height:1;
-  transform:rotate(1deg);
-  transition:background .12s ease,color .12s ease,transform .12s ease;
+  transition:transform .15s ease,background .15s ease;
 }
-.comic-link svg{width:30px;height:30px;display:block;}
-.comic-link:hover,.comic-link:focus-visible{
-  background:#FFFFFF;
-  color:var(--ink);
-  transform:rotate(0) translateY(-2px);
-}
-.comic-link:active{transform:rotate(0) translate(1px,1px);}
-.comic-link:focus-visible{outline:2px solid #FFFFFF;outline-offset:4px;}
-@media (max-width:380px){
-  .head{gap:13px;padding:20px 17px;}
-  .head > svg{width:70px;height:70px;}
-  .head h1{font-size:43px;}
-  .comic-link{width:60px;min-height:66px;font-size:12px;gap:3px;}
-  .comic-link svg{width:25px;height:25px;}
-}
-
-/* 칸 */
-.cell{
-  position:relative;
+.social-link:nth-child(1){transform:rotate(-2deg);}
+.social-link:nth-child(2){transform:rotate(1.8deg);}
+.social-link:nth-child(3){transform:rotate(-1deg);}
+.social-link:hover{transform:rotate(0) translateY(-3px);background:var(--yellow);}
+.social-link svg{width:23px;height:23px;display:block;}
+.footer{
+  margin-top:33px;
+  padding-top:15px;
+  border-top:2px dashed var(--ink);
   display:flex;
   align-items:center;
-  gap:13px;
-  padding:17px 16px;
-  border:3px solid var(--ink);
-  border-image-source:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M4 4 L20 3.3 L42 4.5 L65 3.5 L84 4.3 L96 4 L96.6 27 L95.5 51 L96.4 74 L96 96 L78 95.5 L55 96.6 L32 95.6 L4 96 L4.5 73 L3.4 49 L4.3 25 Z' fill='none' stroke='%2314100F' stroke-width='8' stroke-linejoin='miter'/%3E%3C/svg%3E");
-  border-image-slice:8;
-  background:var(--page);
-  color:var(--ink);
-  text-decoration:none;
-  transition:background .09s linear, color .09s linear;
+  flex-wrap:wrap;
+  gap:10px 22px;
 }
-.cell svg{flex:none;width:30px;height:30px;display:block;color:inherit;}
-.cell b{
-  display:block;
-  font-size:18.5px;
-  font-weight:800;
-  letter-spacing:-0.045em;
-  line-height:1.2;
+.contact-link{font-size:15px;font-weight:800;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:5px;text-decoration-thickness:2px;}
+.footer small{margin-left:auto;font-size:12px;color:var(--muted);}
+@media(max-width:600px){
+  .hero{min-height:164px;padding:23px 19px;gap:10px;}
+  .identity{gap:12px;}
+  .face{width:82px;height:82px;}
+  .hero h1{font-size:clamp(48px,10vw,65px);}
+  .hero p{margin-top:9px;font-size:11px;}
+  .comic-link{width:108px;min-height:98px;padding:9px;}
+  .comic-link strong{font-size:18px;}
+  .comic-link svg{width:29px;height:29px;}
+  .comic-link small{font-size:10px;}
+  .showcase{grid-template-columns:1fr 1fr;gap:11px;}
+  .feature{min-height:220px;padding:16px 15px;}
+  .feature .go{bottom:12px;right:14px;}
+  .notes{gap:11px;margin-top:11px;}
+  .note{padding:12px;gap:9px;min-height:100px;}
+  .note strong{font-size:19px;}
+  .note svg{width:31px;height:31px;}
+  .note .go{font-size:16px;}
 }
-.cell span{
-  display:block;
-  margin-top:3px;
-  font-size:12.5px;
-  font-weight:600;
-  letter-spacing:-0.02em;
-  color:var(--mute);
-  transition:color .09s linear;
+@media(max-width:420px){
+  body{padding:13px 12px 30px;}
+  .hero{min-height:140px;padding:19px 14px;}
+  .face{width:66px;height:66px;}
+  .hero h1{font-size:46px;}
+  .hero p{font-size:10px;letter-spacing:-.02em;max-width:132px;}
+  .comic-link{width:81px;min-height:82px;padding:7px;outline-width:1px;}
+  .comic-link svg{width:24px;height:24px;}
+  .comic-link strong{font-size:16px;}
+  .comic-link small{font-size:9px;}
+  .comic-link .arrow{font-size:14px;right:6px;top:5px;}
+  .section-label{margin-top:23px;}
+  .showcase{grid-template-columns:1fr;}
+  .feature{min-height:172px;}
+  .feature h2{font-size:39px;}
+  .feature .drawing{width:38%;height:70%;top:21px;right:25px;}
+  .long-comic .drawing{width:39%;}
+  .notes{grid-template-columns:1fr 1fr;}
+  .note{min-height:94px;align-items:flex-start;flex-direction:column;gap:3px;padding:13px;}
+  .note svg{width:27px;height:27px;}
+  .note strong{font-size:18px;}
+  .note .go{position:absolute;right:13px;top:11px;}
+  .note{position:relative;}
+  .footer small{width:100%;margin-left:0;}
 }
-.cell:hover,.cell:active,.cell:focus-visible{background:var(--ink);color:#FFFFFF;outline:none;}
-.cell:hover span,.cell:active span,.cell:focus-visible span{color:#B9B5B0;}
-.cell:focus-visible{box-shadow:0 0 0 3px #FFFFFF inset;}
-
-.wide{grid-column:1 / -1;}
-.wide b{font-size:22px;}
-.wide svg{width:38px;height:38px;}
-
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-.mini .cell{
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  padding:15px 8px;
+@media(max-width:330px){
+  .hero{gap:6px;padding:17px 10px;}
+  .identity{gap:7px;}
+  .face{width:59px;height:59px;}
+  .hero h1{font-size:41px;}
+  .hero p{font-size:9px;}
+  .comic-link{width:72px;min-height:77px;}
 }
-.mini .cell b{font-size:14.5px;letter-spacing:-0.05em;}
-.mini .cell svg{width:26px;height:26px;}
-@media (max-width:340px){ .mini .cell b{font-size:13px;} }
-.row .cell{
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:16px;
-  min-height:118px;
-  padding:16px 15px 15px;
-}
-.row .cell > div{min-height:42px;}
-.row .cell b{font-size:17.5px;}
-@media (max-width:344px){ .row .cell b{font-size:16px;} }
-
-.cell .tag{
-  position:absolute;
-  margin:0;
-  top:-3px;
-  right:-3px;
-  padding:4px 7px;
-  background:var(--tag);
-  color:#FFFFFF;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:-0.02em;
-  line-height:1;
-  transition:none;
-}
-
-.foot{
-  margin-top:4px;
-  font-size:12px;
-  font-weight:500;
-  color:var(--mute);
-  letter-spacing:-0.02em;
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
 }
 </style>
 </head>
 <body>
 <main class="page">
-
-  <header class="head">
-    <svg viewBox="0 0 48 48" aria-hidden="true">
+  <header class="hero">
+    <div class="identity">
+      <svg class="face" viewBox="0 0 48 48" aria-hidden="true">
       <path d="M24.00 2.84 C27.19 2.93 30.48 3.49 33.44 4.70 C36.39 5.91 39.79 7.65 41.72 10.08 C43.64 12.51 44.41 16.18 44.97 19.28 C45.53 22.39 45.73 25.72 45.08 28.74 C44.42 31.76 43.07 35.11 41.06 37.40 C39.05 39.69 35.87 41.15 33.03 42.47 C30.19 43.79 27.09 45.14 24.00 45.31 C20.91 45.47 17.40 44.72 14.49 43.46 C11.58 42.19 8.30 40.21 6.54 37.72 C4.78 35.22 4.45 31.57 3.93 28.51 C3.41 25.45 2.76 22.23 3.42 19.37 C4.08 16.52 6.10 13.90 7.91 11.36 C9.72 8.82 11.61 5.56 14.29 4.14 C16.97 2.72 20.81 2.75 24.00 2.84 Z" fill="none" stroke="#FFFFFF" stroke-width="2.1"/>
       <g stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" fill="none">
         <path d="M13.2 9.6V18.6"/><path d="M20.4 7.4V17.4"/>
         <path d="M27.6 7.4V17.4"/><path d="M34.6 10.0V19.0"/>
       </g>
-      <g fill="#FFFFFF">
+      <g class="eyes" fill="#FFFFFF">
         <ellipse cx="18.1" cy="25.2" rx="1.85" ry="2.15"/>
         <ellipse cx="29.9" cy="25.2" rx="1.85" ry="2.15"/>
       </g>
       <path d="M19.9 32.3a4.6 4.6 0 0 0 8.2 0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
     </svg>
-    <h1>혐규</h1>
+      <div>
+        <h1>혐규</h1>
+        <p>그리고, 만들고, 가끔 딴짓합니다.</p>
+      </div>
+    </div>
     <a class="comic-link" href="https://aaffffffffff123-lang.github.io/hyeomgyu/" aria-label="혐규만화 보러 가기">
-      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <span class="arrow" aria-hidden="true">↗</span>
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
         <path d="M3 3h26v26H3zM16 3v26M3 16h26"/>
         <path d="M7 8h5M7 11h3M20 8h5M20 11h3M7 21h5M7 24h3M20 21h5M20 24h3"/>
       </svg>
-      <span>만화</span>
+      <strong>만화</strong>
+      <small>읽으러 가기</small>
     </a>
   </header>
 
-  <div class="mini">
-    <a class="cell" href="https://www.instagram.com/gyuhyeom/">
-      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true">
-        <rect x="4.2" y="4.2" width="25.6" height="25.6" rx="7.4"/>
-        <circle cx="17" cy="17" r="6.2"/>
-        <circle cx="24.6" cy="9.6" r="1.7" fill="currentColor" stroke="none"/>
-      </svg>
-      <b>인스타그램</b>
-    </a>
+  <section aria-label="만든 것">
+    <div class="section-label">만든 것 <span>이쪽부터 구경해 봐</span></div>
+    <div class="showcase">
+      <a class="feature arcade hand-border" href="https://aaffffffffff123-lang.github.io/arcade/">
+        <span class="serial">01 / PLAY</span>
+        <svg class="drawing" viewBox="0 0 180 140" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M37 32 137 27 145 107 45 111Z" stroke-width="3"/>
+          <path d="M46 40 126 37 130 76 49 78ZM40 88l97-3" stroke-width="2.4"/>
+          <path d="M68 96v-14m-7 7h14" stroke-width="3"/>
+          <circle cx="109" cy="92" r="4" fill="currentColor" stroke="none"/>
+          <circle cx="122" cy="96" r="4" fill="currentColor" stroke="none"/>
+          <path d="m78 48 9 9-10 11m20-16 9-5-1 14" stroke-width="2.5"/>
+          <path d="M36 114h110M53 117l-3 12m79-13 4 12M27 63l-11-5m133-4 12-8" stroke-width="2"/>
+        </svg>
+        <h2>오락실</h2>
+        <span class="desc">만든 게임들, 여기서 놀기</span>
+        <span class="go" aria-hidden="true">↗</span>
+      </a>
+      <a class="feature long-comic hand-border" href="https://www.postype.com/@aaffffffffff123">
+        <span class="serial">02 / READ</span>
+        <span class="paid">유료</span>
+        <svg class="drawing" viewBox="0 0 160 135" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 33c25-5 45-1 63 9 19-10 40-14 66-9v84c-25-5-46-1-66 9-18-10-38-14-63-9Z" stroke-width="3"/>
+          <path d="M78 42v84M26 48c18-3 32-1 43 6M26 60c13-2 23-1 34 3m30-9c13-7 27-9 43-7m-42 21c13-6 26-7 40-6" stroke-width="2.2"/>
+          <path d="m48 84 7-9 7 9m-14 0 7 9 7-9m32-2 7-9 7 9m-14 0 7 9 7-9" stroke-width="2"/>
+        </svg>
+        <h2>긴 만화</h2>
+        <span class="desc">포스타입에서 이어 읽기</span>
+        <span class="go" aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="notes">
+      <a class="note hand-border" href="https://aaffffffffff123.tistory.com/">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m7 28-1 6 6-1 22-22-5-5Z M25 10l5 5M6 34h23"/>
+        </svg>
+        <span><strong>블로그</strong><small>티스토리</small></span><span class="go" aria-hidden="true">↗</span>
+      </a>
+      <a class="note hand-border" href="https://marpple.shop/kr/gyuhyeom/">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 9h30v24H5z M12 9V6h16v3M10 17h8v9h-8z M23 18h8m-8 5h8"/>
+          <circle cx="14" cy="18" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        <span><strong>예술 인패스</strong><small>마플샵</small></span><span class="go" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
 
-    <a class="cell" href="https://twitter.com/aaffffffffff123">
-      <svg viewBox="0 0 34 34" aria-hidden="true">
-        <path d="M25.8 3.6h4.7l-10.2 11.7 12 15.1h-9.4l-7.4-9.7-8.5 9.7H2.3l11-12.5L1.9 3.6h9.7l6.7 8.8 7.5-8.8zm-1.7 25h2.6L11.1 6.2H8.3z" fill="currentColor"/>
-      </svg>
-      <b>트위터</b>
-    </a>
+  <section class="social" aria-label="소셜 미디어">
+    <div class="section-label">여기에도 있어요</div>
+    <div class="social-list">
+      <a class="social-link" href="https://www.instagram.com/gyuhyeom/">
+        <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="4.2" y="4.2" width="25.6" height="25.6" rx="7.4"/><circle cx="17" cy="17" r="6.2"/><circle cx="24.6" cy="9.6" r="1.7" fill="currentColor" stroke="none"/></svg>
+        인스타그램
+      </a>
+      <a class="social-link" href="https://twitter.com/aaffffffffff123">
+        <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M25.8 3.6h4.7l-10.2 11.7 12 15.1h-9.4l-7.4-9.7-8.5 9.7H2.3l11-12.5L1.9 3.6h9.7l6.7 8.8 7.5-8.8zm-1.7 25h2.6L11.1 6.2H8.3z" fill="currentColor"/></svg>
+        트위터
+      </a>
+      <a class="social-link" href="https://www.youtube.com/user/aaffffffffff123">
+        <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="2.4" y="7.4" width="29.2" height="19.2" rx="5.4"/><path d="M14.4 12.4 22.6 17l-8.2 4.6z" fill="currentColor" stroke="none"/></svg>
+        유튜브
+      </a>
+    </div>
+  </section>
 
-    <a class="cell" href="https://www.youtube.com/user/aaffffffffff123">
-      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2.4" y="7.4" width="29.2" height="19.2" rx="5.4"/>
-        <path d="M14.4 12.4 22.6 17l-8.2 4.6z" fill="currentColor" stroke="none"/>
-      </svg>
-      <b>유튜브</b>
-    </a>
-  </div>
-
-  <div class="row">
-    <a class="cell" href="https://aaffffffffff123.tistory.com/">
-      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M5.6 24.2 4.2 30l5.8-1.4L28 10.6a3.4 3.4 0 0 0-4.8-4.8z"/>
-        <path d="M21.4 8.2l4.8 4.8"/>
-      </svg>
-      <div>
-        <b>블로그</b>
-        <span>티스토리</span>
-      </div>
-    </a>
-
-    <a class="cell" href="https://www.postype.com/@aaffffffffff123">
-      <span class="tag">유료</span>
-      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M17 8.6C14.2 6.4 10.8 5.6 6.2 5.8v20.4c4.6-.2 8 .6 10.8 2.8 2.8-2.2 6.2-3 10.8-2.8V5.8c-4.6-.2-8 .6-10.8 2.8z"/>
-        <path d="M17 8.6v20.4"/>
-      </svg>
-      <div>
-        <b>긴 만화</b>
-        <span>포스타입</span>
-      </div>
-    </a>
-  </div>
-
-  <div class="row">
-    <a class="cell" href="mailto:aaffffffffff123@gmail.com">
-      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2.6" y="6.6" width="28.8" height="20.8" rx="2.4"/>
-        <path d="M4.4 9 17 18.6 29.6 9"/>
-      </svg>
-      <div>
-        <b>문의</b>
-      </div>
-    </a>
-
-    <a class="cell" href="https://open.kakao.com/o/smWvLXNi">
-      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M17 4.4c7.6 0 13.8 4.8 13.8 10.8S24.6 26 17 26c-1.2 0-2.4-.1-3.5-.4l-6.6 3.6 1.7-5.6C5.5 21.6 3.2 18.4 3.2 15.2 3.2 9.2 9.4 4.4 17 4.4z"/>
-        <path d="M13.9 12.6a3.2 3.2 0 0 1 6.2 1.1c0 2.1-3.1 2.6-3.1 4.6"/>
-        <path d="M17 21.1v.1" stroke-width="2.9"/>
-      </svg>
-      <div>
-        <b>익명질문</b>
-        <span>오픈채팅</span>
-      </div>
-    </a>
-  </div>
-
-  <div class="row">
-    <a class="cell" href="https://marpple.shop/kr/gyuhyeom/">
-      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="3.4" y="7.6" width="27.2" height="19.4" rx="2.6"/>
-        <circle cx="11.8" cy="15.4" r="3.1"/>
-        <path d="M6.6 22.8c1-2.2 3-3.3 5.2-3.3s4.2 1.1 5.2 3.3"/>
-        <path d="M21.6 13.8h6.2M21.6 18.2h6.2"/>
-      </svg>
-      <div>
-        <b>예술 인패스</b>
-        <span>마플샵</span>
-      </div>
-    </a>
-
-    <a class="cell" href="https://aaffffffffff123-lang.github.io/arcade/">
-      <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2.6" y="9.4" width="28.8" height="18.6"/>
-        <path d="M8 14.6v6.2M4.9 17.7h6.2"/>
-        <circle cx="23.4" cy="16.6" r="1.7" fill="currentColor" stroke="none"/>
-        <circle cx="27" cy="20.4" r="1.7" fill="currentColor" stroke="none"/>
-        <path d="M12.4 9.4V5.2h9.2v4.2"/>
-      </svg>
-      <div>
-        <b>오락실</b>
-      </div>
-    </a>
-  </div>
-
-  <p class="foot">aaffffffffff123@gmail.com</p>
-
+  <footer class="footer">
+    <a class="contact-link" href="mailto:aaffffffffff123@gmail.com">문의 ↗</a>
+    <a class="contact-link" href="https://open.kakao.com/o/smWvLXNi">익명질문 ↗</a>
+    <small>aaffffffffff123@gmail.com</small>
+  </footer>
 </main>
 </body>
 </html>
