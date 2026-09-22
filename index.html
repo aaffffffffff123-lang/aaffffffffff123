@@ -106,7 +106,6 @@ a{color:inherit;}
 .face .eyes{transform-box:fill-box;transform-origin:center;animation:blink 6.4s infinite;}
 @keyframes blink{0%,91%,94%,100%{transform:scaleY(1)}92.5%{transform:scaleY(.12)}}
 .hero h1{margin:0;font-size:clamp(58px,10vw,91px);font-weight:800;letter-spacing:-.09em;line-height:.95;white-space:nowrap;}
-.hero p{margin:15px 0 0;font-size:13px;letter-spacing:.03em;color:#c9c2b7;}
 .comic-link{
   position:relative;
   flex:none;
@@ -131,10 +130,7 @@ a{color:inherit;}
 .comic-link strong{display:block;font-size:22px;line-height:1;letter-spacing:-.06em;}
 .comic-link small{font-size:11px;font-weight:700;letter-spacing:-.03em;}
 .comic-link .arrow{position:absolute;right:12px;top:10px;font-size:17px;font-weight:700;}
-.section-label{display:flex;align-items:center;gap:10px;margin:28px 0 14px;font-size:15px;font-weight:800;letter-spacing:-.04em;}
-.section-label::before{content:'✳';color:var(--red);font-size:24px;line-height:0;}
-.section-label span{font-weight:600;font-size:12px;color:var(--muted);letter-spacing:0;}
-.showcase{display:grid;grid-template-columns:1.12fr .88fr;gap:15px;align-items:stretch;}
+.showcase{display:grid;grid-template-columns:1.12fr .88fr;gap:15px;align-items:stretch;margin-top:23px;}
 .hand-border{border:3px solid var(--ink);border-image-source:var(--hand-border);border-image-slice:8;}
 .feature{
   position:relative;
@@ -149,9 +145,8 @@ a{color:inherit;}
 }
 .feature:hover{filter:brightness(.98);}
 .feature:focus-visible,.note:focus-visible,.social-link:focus-visible,.contact-link:focus-visible{outline:3px solid var(--red);outline-offset:5px;}
-.feature .serial{font-size:11px;font-weight:800;letter-spacing:.07em;}
 .feature h2{position:relative;z-index:1;margin:auto 0 3px;font-size:clamp(36px,6vw,54px);font-weight:800;letter-spacing:-.075em;line-height:1;}
-.feature .desc{position:relative;z-index:1;font-size:13px;font-weight:650;}
+.feature .source{position:relative;z-index:1;font-size:13px;font-weight:650;}
 .feature .go{position:absolute;right:22px;bottom:18px;font-size:26px;font-weight:700;transition:transform .17s ease;}
 .feature:hover .go{transform:translate(4px,-4px);}
 .feature .drawing{position:absolute;right:15px;top:31px;width:47%;height:60%;pointer-events:none;}
@@ -180,7 +175,6 @@ a{color:inherit;}
 .note small{display:block;margin-top:3px;font-size:12px;color:var(--muted);font-weight:600;}
 .note .go{margin-left:auto;align-self:flex-start;font-size:21px;}
 .social{margin-top:28px;}
-.social .section-label{margin-bottom:14px;}
 .social-list{display:flex;flex-wrap:wrap;gap:11px;}
 .social-link{
   min-height:47px;
@@ -217,7 +211,6 @@ a{color:inherit;}
   .identity{gap:12px;}
   .face{width:82px;height:82px;}
   .hero h1{font-size:clamp(48px,10vw,65px);}
-  .hero p{margin-top:9px;font-size:11px;}
   .comic-link{width:108px;min-height:98px;padding:9px;}
   .comic-link strong{font-size:18px;}
   .comic-link svg{width:29px;height:29px;}
@@ -236,13 +229,11 @@ a{color:inherit;}
   .hero{min-height:140px;padding:19px 14px;}
   .face{width:66px;height:66px;}
   .hero h1{font-size:46px;}
-  .hero p{font-size:10px;letter-spacing:-.02em;max-width:132px;}
   .comic-link{width:81px;min-height:82px;padding:7px;outline-width:1px;}
   .comic-link svg{width:24px;height:24px;}
   .comic-link strong{font-size:16px;}
   .comic-link small{font-size:9px;}
   .comic-link .arrow{font-size:14px;right:6px;top:5px;}
-  .section-label{margin-top:23px;}
   .showcase{grid-template-columns:1fr;}
   .feature{min-height:172px;}
   .feature h2{font-size:39px;}
@@ -261,7 +252,6 @@ a{color:inherit;}
   .identity{gap:7px;}
   .face{width:59px;height:59px;}
   .hero h1{font-size:41px;}
-  .hero p{font-size:9px;}
   .comic-link{width:72px;min-height:77px;}
 }
 @media(prefers-reduced-motion:reduce){
@@ -287,7 +277,6 @@ a{color:inherit;}
     </svg>
       <div>
         <h1>혐규</h1>
-        <p>그리고, 만들고, 가끔 딴짓합니다.</p>
       </div>
     </div>
     <a class="comic-link" href="https://aaffffffffff123-lang.github.io/hyeomgyu/" aria-label="혐규만화 보러 가기">
@@ -302,10 +291,8 @@ a{color:inherit;}
   </header>
 
   <section aria-label="만든 것">
-    <div class="section-label">만든 것 <span>이쪽부터 구경해 봐</span></div>
     <div class="showcase">
       <a class="feature arcade hand-border" href="https://aaffffffffff123-lang.github.io/arcade/">
-        <span class="serial">01 / PLAY</span>
         <svg class="drawing" viewBox="0 0 180 140" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M37 32 137 27 145 107 45 111Z" stroke-width="3"/>
           <path d="M46 40 126 37 130 76 49 78ZM40 88l97-3" stroke-width="2.4"/>
@@ -316,11 +303,9 @@ a{color:inherit;}
           <path d="M36 114h110M53 117l-3 12m79-13 4 12M27 63l-11-5m133-4 12-8" stroke-width="2"/>
         </svg>
         <h2>오락실</h2>
-        <span class="desc">만든 게임들, 여기서 놀기</span>
         <span class="go" aria-hidden="true">↗</span>
       </a>
       <a class="feature long-comic hand-border" href="https://www.postype.com/@aaffffffffff123">
-        <span class="serial">02 / READ</span>
         <span class="paid">유료</span>
         <svg class="drawing" viewBox="0 0 160 135" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M15 33c25-5 45-1 63 9 19-10 40-14 66-9v84c-25-5-46-1-66 9-18-10-38-14-63-9Z" stroke-width="3"/>
@@ -328,7 +313,7 @@ a{color:inherit;}
           <path d="m48 84 7-9 7 9m-14 0 7 9 7-9m32-2 7-9 7 9m-14 0 7 9 7-9" stroke-width="2"/>
         </svg>
         <h2>긴 만화</h2>
-        <span class="desc">포스타입에서 이어 읽기</span>
+        <span class="source">포스타입</span>
         <span class="go" aria-hidden="true">↗</span>
       </a>
     </div>
@@ -350,7 +335,6 @@ a{color:inherit;}
   </section>
 
   <section class="social" aria-label="소셜 미디어">
-    <div class="section-label">여기에도 있어요</div>
     <div class="social-list">
       <a class="social-link" href="https://www.instagram.com/gyuhyeom/">
         <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="4.2" y="4.2" width="25.6" height="25.6" rx="7.4"/><circle cx="17" cy="17" r="6.2"/><circle cx="24.6" cy="9.6" r="1.7" fill="currentColor" stroke="none"/></svg>
