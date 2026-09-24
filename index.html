@@ -144,7 +144,7 @@ a{color:inherit;}
   transition:transform .17s ease,filter .17s ease;
 }
 .feature:hover{filter:brightness(.98);}
-.feature:focus-visible,.note:focus-visible,.social-link:focus-visible,.contact-link:focus-visible{outline:3px solid var(--red);outline-offset:5px;}
+.feature:focus-visible,.note:focus-visible,.social-link:focus-visible,.contact-link:focus-visible,.support-coin:focus-visible,.support-choice:focus-visible{outline:3px solid var(--red);outline-offset:5px;}
 .feature h2{position:relative;z-index:1;margin:auto 0 3px;font-size:clamp(36px,6vw,54px);font-weight:800;letter-spacing:-.075em;line-height:1;}
 .feature .source{position:relative;z-index:1;font-size:13px;font-weight:650;}
 .feature .go{position:absolute;right:22px;bottom:18px;font-size:26px;font-weight:700;transition:transform .17s ease;}
@@ -199,13 +199,86 @@ a{color:inherit;}
   margin-top:33px;
   padding-top:15px;
   border-top:2px dashed var(--ink);
-  display:flex;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
   align-items:center;
-  flex-wrap:wrap;
   gap:10px 22px;
 }
+.footer-links{display:flex;align-items:center;flex-wrap:wrap;gap:10px 22px;}
 .contact-link{font-size:15px;font-weight:800;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:5px;text-decoration-thickness:2px;}
-.footer small{margin-left:auto;font-size:12px;color:var(--muted);}
+.footer small{justify-self:end;text-align:right;font-size:12px;color:var(--muted);}
+.support-coin{
+  width:34px;
+  height:34px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:var(--ink);
+  cursor:pointer;
+  transform:rotate(-3deg);
+  transition:transform .15s ease,filter .15s ease;
+}
+.support-coin:hover{transform:rotate(2deg) translateY(-2px);filter:brightness(1.03);}
+.support-coin:active{transform:rotate(-1deg) scale(.94);}
+.support-coin svg{display:block;width:100%;height:100%;overflow:visible;}
+.support-coin .coin-face{fill:var(--yellow);stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;}
+.support-coin .coin-ring{fill:none;stroke:currentColor;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round;opacity:.72;}
+.support-coin text{font-family:Arial,sans-serif;font-size:8.2px;font-weight:800;fill:currentColor;letter-spacing:-.06em;}
+.support-coin.is-ringing{animation:coin-wobble .28s ease-out;}
+@keyframes coin-wobble{
+  0%{transform:rotate(-3deg) scale(1)}
+  28%{transform:rotate(8deg) scale(.95)}
+  58%{transform:rotate(-7deg) scale(1.04)}
+  82%{transform:rotate(3deg) scale(.99)}
+  100%{transform:rotate(-3deg) scale(1)}
+}
+.support-modal{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:rgba(25,23,21,.38);
+  opacity:0;
+  transition:opacity .16s ease;
+}
+.support-modal[hidden]{display:none;}
+.support-modal.is-open{opacity:1;}
+.support-card{
+  width:min(100%,286px);
+  padding:25px 24px 21px;
+  background:var(--white);
+  color:var(--ink);
+  border:3px solid var(--ink);
+  clip-path:polygon(1% 2%,31% 0,67% 1.4%,99% .4%,100% 31%,98.8% 68%,100% 99%,67% 98%,32% 100%,.6% 98.5%,1.5% 64%,0 31%);
+  transform:rotate(-.6deg) translateY(7px);
+  transition:transform .16s ease;
+  text-align:center;
+}
+.support-modal.is-open .support-card{transform:rotate(-.6deg) translateY(0);}
+.support-card p{margin:0 0 20px;font-size:22px;font-weight:800;letter-spacing:-.045em;}
+.support-actions{display:flex;justify-content:center;gap:9px;}
+.support-choice{
+  min-width:88px;
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:9px 14px;
+  border:2px solid var(--ink);
+  background:var(--white);
+  color:var(--ink);
+  font:inherit;
+  font-size:15px;
+  font-weight:800;
+  text-decoration:none;
+  cursor:pointer;
+}
+.support-choice-primary{background:var(--yellow);transform:rotate(-1deg);}
+.support-choice-cancel{transform:rotate(1deg);}
+.support-choice:hover{transform:rotate(0) translateY(-2px);}
 @media(max-width:600px){
   .hero{min-height:164px;padding:23px 19px;gap:10px;}
   .identity{gap:12px;}
@@ -245,7 +318,11 @@ a{color:inherit;}
   .note strong{font-size:18px;}
   .note .go{position:absolute;right:13px;top:11px;}
   .note{position:relative;}
-  .footer small{width:100%;margin-left:0;}
+  .footer{grid-template-columns:1fr;gap:11px;}
+  .footer-links{grid-column:1;grid-row:1;}
+  .footer small{grid-column:1;grid-row:2;justify-self:start;width:auto;margin-left:0;}
+  .support-coin{grid-column:1;grid-row:3;justify-self:center;margin-top:3px;}
+  .support-card{padding:23px 20px 19px;}
 }
 @media(max-width:330px){
   .hero{gap:6px;padding:17px 10px;}
@@ -352,10 +429,125 @@ a{color:inherit;}
   </section>
 
   <footer class="footer">
-    <a class="contact-link" href="mailto:aaffffffffff123@gmail.com">문의 ↗</a>
-    <a class="contact-link" href="https://open.kakao.com/o/smWvLXNi">익명질문 ↗</a>
+    <div class="footer-links">
+      <a class="contact-link" href="mailto:aaffffffffff123@gmail.com">문의 ↗</a>
+      <a class="contact-link" href="https://open.kakao.com/o/smWvLXNi">익명질문 ↗</a>
+    </div>
+    <button class="support-coin" id="supportCoin" type="button" aria-label="후원하기" title="후원하기">
+      <svg viewBox="0 0 36 36" aria-hidden="true">
+        <path class="coin-face" d="M18.3 2.2C23.6 2.1 29.2 4.7 32.3 9.2c3 4.5 2.4 10.5.8 15.6-1.7 5.2-6.5 8.8-11.8 9.5-5.4.7-11.3-.9-14.9-5-3.6-4-5.3-10-3.6-15.2C4.5 8.9 8.9 4.3 14 2.8c1.4-.4 2.8-.6 4.3-.6Z"/>
+        <path class="coin-ring" d="M18.1 5.6c4.6-.1 9.1 2.1 11.6 5.9 2.4 3.7 2 8.6.6 12.6-1.5 4-5.4 6.7-9.7 7.1-4.4.5-9.2-.9-12-4.3-2.8-3.3-3.9-8.2-2.5-12.3 1.4-4.1 5-7.5 9.2-8.6.9-.2 1.9-.4 2.8-.4Z"/>
+        <text x="18" y="20.8" text-anchor="middle">100</text>
+      </svg>
+    </button>
     <small>aaffffffffff123@gmail.com</small>
   </footer>
 </main>
+
+<div class="support-modal" id="supportModal" hidden>
+  <div class="support-card" role="dialog" aria-modal="true" aria-labelledby="supportTitle">
+    <p id="supportTitle">후원하기.</p>
+    <div class="support-actions">
+      <a class="support-choice support-choice-primary" id="supportGo" href="https://qr.kakaopay.com/Ej9SOogEu">하기.</a>
+      <button class="support-choice support-choice-cancel" id="supportCancel" type="button">안 하기.</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const coin = document.getElementById('supportCoin');
+  const modal = document.getElementById('supportModal');
+  const supportGo = document.getElementById('supportGo');
+  const cancel = document.getElementById('supportCancel');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let audioContext = null;
+  let openTimer = 0;
+  let closeTimer = 0;
+  let lastFocus = null;
+
+  function playCoinChime(){
+    try{
+      audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+      if(audioContext.state === 'suspended') audioContext.resume();
+      const now = audioContext.currentTime;
+      const master = audioContext.createGain();
+      master.gain.setValueAtTime(.0001,now);
+      master.gain.exponentialRampToValueAtTime(.12,now + .004);
+      master.gain.exponentialRampToValueAtTime(.0001,now + .19);
+      master.connect(audioContext.destination);
+
+      [1840,2670,4210].forEach((frequency,index) => {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.type = index === 0 ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(frequency,now);
+        osc.frequency.exponentialRampToValueAtTime(frequency * .982,now + .14);
+        gain.gain.setValueAtTime([.38,.24,.12][index],now);
+        gain.gain.exponentialRampToValueAtTime(.0001,now + [.18,.13,.085][index]);
+        osc.connect(gain).connect(master);
+        osc.start(now);
+        osc.stop(now + .2);
+      });
+
+      const length = Math.max(1,Math.floor(audioContext.sampleRate * .025));
+      const buffer = audioContext.createBuffer(1,length,audioContext.sampleRate);
+      const samples = buffer.getChannelData(0);
+      for(let i=0;i<length;i++) samples[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length,3);
+      const noise = audioContext.createBufferSource();
+      const highpass = audioContext.createBiquadFilter();
+      const noiseGain = audioContext.createGain();
+      highpass.type = 'highpass';
+      highpass.frequency.value = 2100;
+      noiseGain.gain.setValueAtTime(.2,now);
+      noiseGain.gain.exponentialRampToValueAtTime(.0001,now + .025);
+      noise.buffer = buffer;
+      noise.connect(highpass).connect(noiseGain).connect(master);
+      noise.start(now);
+    }catch(error){}
+  }
+
+  function showModal(){
+    clearTimeout(closeTimer);
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    requestAnimationFrame(() => {
+      modal.classList.add('is-open');
+      supportGo.focus();
+    });
+  }
+
+  function closeModal(){
+    clearTimeout(openTimer);
+    modal.classList.remove('is-open');
+    closeTimer = setTimeout(() => {
+      modal.hidden = true;
+      if(lastFocus) lastFocus.focus();
+    },reduceMotion.matches ? 0 : 170);
+  }
+
+  coin.addEventListener('click',() => {
+    clearTimeout(openTimer);
+    playCoinChime();
+    coin.classList.remove('is-ringing');
+    void coin.offsetWidth;
+    coin.classList.add('is-ringing');
+    openTimer = setTimeout(showModal,reduceMotion.matches ? 0 : 180);
+  });
+  coin.addEventListener('animationend',() => coin.classList.remove('is-ringing'));
+  cancel.addEventListener('click',closeModal);
+  modal.addEventListener('click',event => {
+    if(event.target === modal) closeModal();
+  });
+  document.addEventListener('keydown',event => {
+    if(event.key !== 'Escape') return;
+    if(openTimer){
+      clearTimeout(openTimer);
+      openTimer = 0;
+    }
+    if(!modal.hidden) closeModal();
+  });
+})();
+</script>
 </body>
 </html>
